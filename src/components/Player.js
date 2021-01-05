@@ -16,7 +16,7 @@ const Player = () => {
       </div>
       <div className="play-control">
         <FontAwesomeIcon className="backward" size="2x" icon={faBackward} />
-        <FontAwesomeIcon className="play" size="2x" icon={faPlayCircle} />
+        <FontAwesomeIcon className="play" size="3x" icon={faPlayCircle} />
         <FontAwesomeIcon className="forward" size="2x" icon={faForward} />
       </div>
     </div>
