@@ -1,22 +1,26 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlayCircle,
   faBackward,
   faForward,
+  faPauseCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Player = ({ currentSong, playing, setPlaying }) => {
   // Reference
   const audioRef = useRef(null);
+  const [changeIcon, setChangeIcon] = useState(faPlayCircle);
   // Event handlers
   const playSongHandler = () => {
     if (playing) {
       audioRef.current.pause();
       setPlaying(false);
+      setChangeIcon(faPlayCircle);
     } else {
       audioRef.current.play();
       setPlaying(true);
+      setChangeIcon(faPauseCircle);
     }
   };
 
@@ -33,7 +37,7 @@ const Player = ({ currentSong, playing, setPlaying }) => {
           onClick={playSongHandler}
           className="play"
           size="3x"
-          icon={faPlayCircle}
+          icon={changeIcon}
         />
         <FontAwesomeIcon className="forward" size="2x" icon={faForward} />
       </div>
