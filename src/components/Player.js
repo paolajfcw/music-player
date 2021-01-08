@@ -37,14 +37,10 @@ const Player = ({ currentSong, playing, setPlaying }) => {
   };
 
   const formatTime = (time) => {
-    const minute = Math.floor(time / 60);
-    const second = Math.floor(time % 60);
-
-    if (second < 10) {
-      return `${minute}:0${second}`;
-    } else {
-      return `${minute}:${second}`;
-    }
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    const secondsWithZero = String(seconds).padStart(2, "0");
+    return `${minutes}:${secondsWithZero}`;
   };
 
   return (
@@ -66,6 +62,7 @@ const Player = ({ currentSong, playing, setPlaying }) => {
       </div>
       <audio
         onTimeUpdate={timeUpdateHandler}
+        onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
       ></audio>
