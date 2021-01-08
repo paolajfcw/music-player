@@ -10,7 +10,12 @@ import {
 const Player = ({ currentSong, playing, setPlaying }) => {
   // Reference
   const audioRef = useRef(null);
+  // States
   const [changeIcon, setChangeIcon] = useState(faPlayCircle);
+  const [songTime, setSongTime] = useState({
+    currentTime: null,
+    duration: null,
+  });
   // Event handlers
   const playSongHandler = () => {
     if (playing) {
@@ -24,12 +29,30 @@ const Player = ({ currentSong, playing, setPlaying }) => {
     }
   };
 
+  const timeUpdateHandler = (e) => {
+    // console.log(e.target)/this was shorten below: currentTime: currentTime/ duration: duration
+    const currentTime = e.target.currentTime;
+    const duration = e.target.duration;
+    setSongTime({ ...songTime, currentTime, duration });
+  };
+
+  const formatTime = (time) => {
+    const minute = Math.floor(time / 60);
+    const second = Math.floor(time % 60);
+
+    if (second < 10) {
+      return `${minute}:0${second}`;
+    } else {
+      return `${minute}:${second}`;
+    }
+  };
+
   return (
     <div className="Player">
       <div className="time-control">
-        <p>Start Time</p>
+        <p>{formatTime(songTime.currentTime)}</p>
         <input type="range" />
-        <p>End Time</p>
+        <p>{formatTime(songTime.duration)}</p>
       </div>
       <div className="play-control">
         <FontAwesomeIcon className="backward" size="2x" icon={faBackward} />
@@ -41,7 +64,11 @@ const Player = ({ currentSong, playing, setPlaying }) => {
         />
         <FontAwesomeIcon className="forward" size="2x" icon={faForward} />
       </div>
-      <audio ref={audioRef} src={currentSong.audio}></audio>
+      <audio
+        onTimeUpdate={timeUpdateHandler}
+        ref={audioRef}
+        src={currentSong.audio}
+      ></audio>
     </div>
   );
 };
