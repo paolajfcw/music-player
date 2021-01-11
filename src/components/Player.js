@@ -13,8 +13,8 @@ const Player = ({ currentSong, playing, setPlaying }) => {
   // States
   const [changeIcon, setChangeIcon] = useState(faPlayCircle);
   const [songTime, setSongTime] = useState({
-    currentTime: null,
-    duration: null,
+    currentTime: "",
+    duration: "",
   });
   // Event handlers
   const playSongHandler = () => {
@@ -43,11 +43,23 @@ const Player = ({ currentSong, playing, setPlaying }) => {
     return `${minutes}:${secondsWithZero}`;
   };
 
+  const dragHandler = (e) => {
+    // console.log(audioRef);
+    audioRef.current.currentTime = e.target.value;
+    // setSongTime({ ...songTime, currentTime: e.target.value });
+  };
+
   return (
     <div className="Player">
       <div className="time-control">
         <p>{formatTime(songTime.currentTime)}</p>
-        <input type="range" />
+        <input
+          min="0"
+          max={songTime.duration}
+          value={songTime.currentTime}
+          onChange={dragHandler}
+          type="range"
+        />
         <p>{formatTime(songTime.duration)}</p>
       </div>
       <div className="play-control">
