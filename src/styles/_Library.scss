@@ -1,0 +1,54 @@
+.Library {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  overflow: scroll;
+  box-shadow: 2px 2px 50px rgb(202, 199, 199);
+  h2 {
+    padding: 2rem;
+  }
+}
+
+.LibrarySong {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  img {
+    width: 30%;
+  }
+  &:hover {
+    background-color: rgb(236, 223, 250);
+  }
+
+  .SongDescription {
+    padding-left: 25px;
+    h3 {
+      font-size: 18px;
+    }
+    h4 {
+      font-size: 12px;
+    }
+  }
+}
+
+// * {
+//   scrollbar-width: thin;
+//   scrollbar-color: rgb(155, 155, 155, 0.5) transparent;
+// }
+
+// *::-webkit-scrollbar {
+//   width: 5px;
+// }
+
+// *::-webkit-scrollbar-track {
+//   background-color: transparent;
+// }
+// *::-webkit-scrollbar-thumb {
+//   background-color: rgb(155, 155, 155, 0.5);
+//   border-radius: 20px;
+//   border: transparent;
+// }
