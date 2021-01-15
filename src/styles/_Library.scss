@@ -35,15 +35,16 @@
   }
 }
 
+// this is a trick to change the css of the scrollbar / This works on Firefox.
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
 }
 
+//to make it work on other browsers, we have to write this code below
 *::-webkit-scrollbar {
   width: 8px;
 }
-
 *::-webkit-scrollbar-track {
   background-color: transparent;
 }
