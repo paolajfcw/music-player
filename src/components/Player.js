@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlayCircle,
@@ -7,15 +7,10 @@ import {
   faPauseCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong, playing, setPlaying }) => {
-  // Reference
-  const audioRef = useRef(null);
+const Player = ({ audioRef, playing, setPlaying, songTime }) => {
   // States
   const [changeIcon, setChangeIcon] = useState(faPlayCircle);
-  const [songTime, setSongTime] = useState({
-    currentTime: "",
-    duration: "",
-  });
+
   // Event handlers
   const playSongHandler = () => {
     if (playing) {
@@ -27,13 +22,6 @@ const Player = ({ currentSong, playing, setPlaying }) => {
       setPlaying(true);
       setChangeIcon(faPauseCircle);
     }
-  };
-
-  const timeUpdateHandler = (e) => {
-    // console.log(e.target)/this was shorten below: currentTime: currentTime/ duration: duration
-    const currentTime = e.target.currentTime;
-    const duration = e.target.duration;
-    setSongTime({ ...songTime, currentTime, duration });
   };
 
   const formatTime = (time) => {
@@ -72,12 +60,6 @@ const Player = ({ currentSong, playing, setPlaying }) => {
         />
         <FontAwesomeIcon className="forward" size="2x" icon={faForward} />
       </div>
-      <audio
-        onTimeUpdate={timeUpdateHandler}
-        onLoadedMetadata={timeUpdateHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-      ></audio>
     </div>
   );
 };
