@@ -7,6 +7,10 @@
   height: 100%;
   overflow: scroll;
   box-shadow: 2px 2px 30px rgb(202, 199, 199);
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
+  opacity: 0;
+
   h2 {
     padding: 2rem;
   }
@@ -37,6 +41,11 @@
 
 .playingMode {
   background-color: #e5e4e4;
+}
+
+.activeLibrary {
+  transform: translateX(0%);
+  opacity: 1;
 }
 
 // this is a trick to change the css of the scrollbar / This works on Firefox.
