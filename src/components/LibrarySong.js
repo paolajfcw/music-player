@@ -5,16 +5,22 @@ const LibrarySong = ({
   setCurrentSong,
   playing,
   audioRef,
-  currentSong,
+  id,
+  setSongs,
+  songs,
 }) => {
   const selectSongHandler = () => {
     setCurrentSong(song);
     // Add Active state
-    // if (currentSong.id === song.id) {
-    //   return { ...song, active: true };
-    // } else {
-    //   return { ...song, active: false };
-    // }
+    const changedSongs = songs.map((targetSong) => {
+      if (targetSong.id === id) {
+        return { ...targetSong, active: true };
+      } else {
+        return { ...targetSong, active: false };
+      }
+    });
+    setSongs(changedSongs);
+
     // Check if the song is playing
     if (playing) {
       const playPromise = audioRef.current.play();
@@ -24,14 +30,6 @@ const LibrarySong = ({
         });
       }
     }
-    // setSongs(
-    //   songs.map((targetSong) => {
-    //     return {
-    //       ...targetSong,
-    //       active: targetSong.id === song.id,
-    //     };
-    //   })
-    // );
   };
 
   return (
