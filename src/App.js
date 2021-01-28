@@ -16,6 +16,7 @@ function App() {
     currentTime: "",
     duration: "",
   });
+  const animationPercentage = (songTime.currentTime / songTime.duration) * 100;
   const [libraryStatus, setLibraryStatus] = useState(false);
   // Reference
   const audioRef = useRef(null);
@@ -40,6 +41,7 @@ function App() {
         songs={songs}
         setCurrentSong={setCurrentSong}
         setSongs={setSongs}
+        animationPercentage={animationPercentage}
       />
       <Library
         songs={songs}

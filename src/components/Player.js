@@ -17,6 +17,7 @@ const Player = ({
   songs,
   setCurrentSong,
   setSongs,
+  animationPercentage,
 }) => {
   // States
   const [changeIcon, setChangeIcon] = useState(faPlayCircle);
@@ -79,13 +80,26 @@ const Player = ({
     <div className="Player">
       <div className="time-control">
         <p>{formatTime(songTime.currentTime)}</p>
-        <input
-          min="0"
-          max={songTime.duration || 0}
-          value={songTime.currentTime}
-          onChange={dragHandler}
-          type="range"
-        />
+        <div
+          style={{
+            background: `linear-gradient(to right, ${currentSong.color[0]},${currentSong.color[1]})`,
+          }}
+          className="track"
+        >
+          <input
+            min="0"
+            max={songTime.duration || 0}
+            value={songTime.currentTime}
+            onChange={dragHandler}
+            type="range"
+          />
+          <div
+            style={{
+              transform: `translateX(${animationPercentage}%)`,
+            }}
+            className="animate-track"
+          ></div>
+        </div>
         <p>{formatTime(songTime.duration || 0)}</p>
       </div>
       <div className="play-control">
