@@ -18,6 +18,18 @@ h4 {
   color: rgb(114, 113, 113);
 }
 
+.App {
+  transition: all 0.5s ease;
+}
+
+.library-active {
+  margin-left: 5%;
+  button {
+    position: relative;
+    left: 40px;
+  }
+}
+
 @import "./Song";
 @import "./Player";
 @import "./Library";
