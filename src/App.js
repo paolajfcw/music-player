@@ -21,6 +21,18 @@ function App() {
   // Reference
   const audioRef = useRef(null);
 
+  const activeSongHandler = (nextPrevSong) => {
+    const changedSongs = songs.map((targetSong) => {
+      if (targetSong.id === nextPrevSong.id) {
+        return { ...targetSong, active: true };
+      } else {
+        return { ...targetSong, active: false };
+      }
+    });
+    setSongs(changedSongs);
+    // console.log("hi from activeSongHandler function");
+  };
+
   const timeUpdateHandler = (e) => {
     // console.log(e.target)/this was shorten below: currentTime: currentTime/ duration: duration
     const currentTime = e.target.currentTime;
@@ -32,6 +44,7 @@ function App() {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     if (playing) audioRef.current.play();
+    activeSongHandler(songs[(currentIndex + 1) % songs.length]);
   };
 
   return (
@@ -48,6 +61,7 @@ function App() {
         setCurrentSong={setCurrentSong}
         setSongs={setSongs}
         animationPercentage={animationPercentage}
+        activeSongHandler={activeSongHandler}
       />
       <Library
         songs={songs}

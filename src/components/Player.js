@@ -15,25 +15,13 @@ const Player = ({
   currentSong,
   songs,
   setCurrentSong,
-  setSongs,
   animationPercentage,
+  activeSongHandler,
 }) => {
   // States
   const [changeIcon, setChangeIcon] = useState(faPlayCircle);
 
   // Event handlers
-  const activeSongHandler = (nextPrevSong) => {
-    const changedSongs = songs.map((targetSong) => {
-      if (targetSong.id === nextPrevSong.id) {
-        return { ...targetSong, active: true };
-      } else {
-        return { ...targetSong, active: false };
-      }
-    });
-    setSongs(changedSongs);
-    console.log("hi from activeSongHandler");
-  };
-
   const playSongHandler = () => {
     if (playing) {
       audioRef.current.pause();
