@@ -20,7 +20,7 @@ const LibrarySong = ({
       }
     });
     setSongs(changedSongs);
-    console.log("hi from selectsonghandler function");
+    // console.log("hi from selectsonghandler function");
     // Check if the song is playing
     if (playing) audioRef.current.play();
   };
