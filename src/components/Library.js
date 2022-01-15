@@ -26,6 +26,16 @@ const Library = ({
           />
         ))}
       </div>
+      <small>
+        <a
+          href="https://github.com/paolajfcw/music-player"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open-source code
+        </a>{" "}
+        by Jhoselyn Farfan
+      </small>
     </div>
   );
 };
